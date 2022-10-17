@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HomeScreen, LoginScreen } from "./pages"
+import { HomeScreen, LoginScreen, UserProfile } from "./pages"
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomeScreen />}/>
         <Route path='/login' element={<LoginScreen />}/>
+        <Route path='/:userName' element={<UserProfile />}/>
       </Routes>
     </BrowserRouter>
 

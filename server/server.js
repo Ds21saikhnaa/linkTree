@@ -1,23 +1,24 @@
 const express = require("express");
 const cors = require('cors');
-// const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 const { connectDB } = require("./config/db");
 const { userRouter } = require("./routes/userRoute");
+const { linkRouter } = require("./routes/linkRoute");
 const { errorHandler } = require("./middleware/errorHandler");
 
 
 const app = express();
-const port = process.env.PORT || 5001;
+app.use(cors());
 dotenv.config({path: './config/config.env'});
+const port = process.env.PORT || 5001;
 connectDB();
 app.use(express.json());
-app.use(cors());
 
 app.use("/api/v1/",userRouter);
+app.use("/api/v1/",linkRouter);
 app.use(errorHandler);
 
 
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}.`)
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}.`)
 });

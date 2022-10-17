@@ -1,6 +1,9 @@
 import React from 'react';
+import { AddLink } from '../components';
 export const HomeScreen = () => {
     return(
-        <div>this is home page</div>
+        <div>
+            <AddLink />
+        </div>
     )
 }
