@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomeScreen, LoginScreen, UserProfile } from "./pages"
+import { UserContext } from "./context";
 
 function App() {
   return (
@@ -12,7 +13,6 @@ function App() {
         <Route path='/:userName' element={<UserProfile />}/>
       </Routes>
     </BrowserRouter>
-
   );
 }
 

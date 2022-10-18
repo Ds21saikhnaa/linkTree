@@ -12,6 +12,7 @@ const protect = asyncHandler(async(req, res, next) => {
 
     const tokenObj = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = tokenObj.id;
+    req.userName = tokenObj.name;
     next();
 });
 
