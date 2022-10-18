@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RenderLink } from '../components';
+import { RenderLink, UserInfo } from '../components';
 import { useParams } from 'react-router-dom';
 import { sendRequest } from "../utils/Api";
 export const UserProfile = () => {
@@ -15,8 +15,28 @@ export const UserProfile = () => {
         getData();
     },[]);
     return (
-        <div>
-            <RenderLink link={link}/>
+        <div style={styles.containar}>
+            <div style={styles.mini}>
+                <UserInfo user={link[0]?.userId}/>
+                <RenderLink link={link}/>
+            </div>
         </div>
     )
+}
+
+const styles = {
+    containar: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        width: "100vw",
+        backgroundColor: "#FFFFCC"
+    },
+    mini: {
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        width: "50%",
+    }
 }

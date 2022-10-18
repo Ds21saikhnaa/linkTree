@@ -32,6 +32,7 @@ export const LoginScreen = () => {
             />
             <input
                 placeholder="password"
+                type={"password"}
                 value={password} 
                 onChange={(e) => {setLoginInput({ ...loginInput, password: e.target.value})}}
             />

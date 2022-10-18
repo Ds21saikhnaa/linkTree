@@ -17,14 +17,39 @@ export const AddLink = () => {
         }
     };
     return (
-        <div>
-            <input placeholder="name"
+        <div style={styles.containar}>
+            <input style={styles.inp} placeholder="name"
             value={title} 
             onChange={(e) => {setAddInput({ ...addInput, title: e.target.value})}}/>
-            <input placeholder="link"
+            <input style={styles.inp} placeholder="link"
             value={link} 
             onChange={(e) => {setAddInput({ ...addInput, link: e.target.value})}}/>
-            <button onClick={add}>add</button>
+            <button style={styles.btn} onClick={add}>add</button>
         </div>
     )
+}
+
+const styles = {
+    containar: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "60%",
+        width: "50%",
+        borderRadius: 30,
+        flexDirection: "column",
+        backgroundColor: "blue"
+    },
+    inp: {
+        height: 40,
+        width: 400,
+        marginTop: 30,
+        borderRadius: 20
+    },
+    btn: {
+        height: 40,
+        width: 200,
+        marginTop: 30,
+        borderRadius: 20
+    }
 }
