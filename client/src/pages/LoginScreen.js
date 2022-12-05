@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import { sendRequest } from '../utils/Api';
 export const LoginScreen = () => {
+    // const navigate = useNavigate();
     const [loginInput, setLoginInput] = useState({
         email: "",
         password: "",
     });
 
     const { email, password } = loginInput;
-    const cat = localStorage.getItem('userInfo');
-    useEffect(() => {
-        if (cat) {
-            document.location.href = '/'
-        }
-    }, [cat])
     const login = async () => {
         try{
             const { data }  = await sendRequest(`login/`, "POST", loginInput);
-            localStorage.setItem('userInfo', JSON.stringify(data.token));
-            document.location.href = '/'
+            localStorage.setItem('userInfo', JSON.stringify(data));
+            // navigate("/");
+            // document.location.href = '/'
         }catch(e){
             alert(e.message.toString());
-            // console.log(e.message.toString());
         }
     };
     return (

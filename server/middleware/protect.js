@@ -1,12 +1,13 @@
-const  jwt  = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const { MyError } = require("../utils/myError.js");
-const protect = asyncHandler(async(req, res, next) => {
-    if(!req.headers.authorization){
+const protect = asyncHandler(async (req, res, next) => {
+    if (!req.headers.authorization) {
         throw new MyError("ene uildeliig hiihed tanii erh hurehgui bn. Ta ehleed newtrej oroh ystoi!", 401);
     }
+    console.log(process.env.JWT_SECRET)
     const token = req.headers.authorization.split(" ")[1];
-    if(!token){
+    if (!token) {
         throw new MyError("Ta ehleed newtrej oroh ystoi!", 400);
     }
 
@@ -16,4 +17,4 @@ const protect = asyncHandler(async(req, res, next) => {
     next();
 });
 
-module.exports = {protect}
+module.exports = { protect }

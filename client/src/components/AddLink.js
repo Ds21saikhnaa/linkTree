@@ -38,7 +38,7 @@ const styles = {
         width: "50%",
         borderRadius: 30,
         flexDirection: "column",
-        backgroundColor: "blue"
+        backgroundColor: "gray"
     },
     inp: {
         height: 40,

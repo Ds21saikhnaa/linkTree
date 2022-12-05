@@ -3,23 +3,31 @@ const { User } = require("../models/userModel");
 const { Link } = require("../models/linkModel");
 const { MyError } = require("../utils/myError");
 
+const getLinks = asyncHandler(async (req, res, next) => {
+    const link = await Link.find();
+    res.status(200).json({
+        success: true,
+        data: link
+    });
+})
+
 const createLink = asyncHandler(async (req, res, next) => {
     const userId = req.userId;
     const user = await User.findById(userId);
-    if(!user){
+    if (!user) {
         throw new MyError("iim user bhgui bn!", 404);
     }
     req.body.userName = req.userName;
-    const result = await Link.create({...req.body, userId });
+    const result = await Link.create({ ...req.body, userId });
     res.status(200).json({
         success: true,
         result
     });
 });
 
-const getUserLinks = asyncHandler(async(req, res, next) => {
-    const links = await Link.find({userName: req.params.name}).populate("userId").lean();
-    if(!links){
+const getUserLinks = asyncHandler(async (req, res, next) => {
+    const links = await Link.find({ userName: req.params.name }).populate("userId").lean();
+    if (!links) {
         throw new MyError("iim user bhgui bn!", 404);
     }
     res.status(200).json({
@@ -29,4 +37,4 @@ const getUserLinks = asyncHandler(async(req, res, next) => {
 })
 
 
-module.exports = { createLink, getUserLinks}
+module.exports = { createLink, getUserLinks, getLinks }

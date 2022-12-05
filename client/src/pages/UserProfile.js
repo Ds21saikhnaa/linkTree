@@ -6,9 +6,9 @@ export const UserProfile = () => {
     const { userName: name } = useParams();
     const [link, setLink] = useState([]);
     const getData = async () => {
-        let cat = localStorage.getItem('userInfo');
-        cat = cat.slice(1, cat.length - 1);
-        const { data } = await sendRequest(`getLink/${name}`, "GET", {}, cat);
+        let cat = JSON.parse(localStorage.getItem('userInfo'));
+        console.log(cat);
+        const { data } = await sendRequest(`getLink/${name}`, "GET", {}, cat.token);
         setLink(data.links);
     };
     useEffect(() => {
