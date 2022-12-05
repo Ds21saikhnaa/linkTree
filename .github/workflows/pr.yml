@@ -6,7 +6,9 @@ on:
 
 env:
   CI: true
-  MONGODB_URL: mongodb+srv://dashmandalsaikhanbileg:amazon@testamazon.4lbhbua.mongodb.net/?retryWrites=true&w=majority
+  ATLAS_URI: mongodb+srv://dashmandalsaikhanbileg:amazon@testamazon.4lbhbua.mongodb.net/?retryWrites=true&w=majority
+  JWT_SECRET: LINKTREE%21$
+  JWT_EXPIRESIN: 30d
 
 jobs:
   build_and_test:
