@@ -32,5 +32,5 @@ jobs:
       # - name: Deploy
       #   run: vercel
       - name: "Deploy application"
-        run: npx vercel --token ${VERCEL_TOKEN} --prod
+        run: vercel --token ${VERCEL_TOKEN} --prod
          
