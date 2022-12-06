@@ -32,7 +32,7 @@ jobs:
       # - name: Deploy
       #   run: vercel
       - name: "Deploy application"
-       run: |
+        run: |
          prodRun=""
          if [[ ${GITHUB_REF} == "refs/heads/main" ]]; then
            prodRun="--prod"
