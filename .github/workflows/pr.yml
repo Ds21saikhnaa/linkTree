@@ -27,3 +27,6 @@ jobs:
 
       - name: Run test
         run: npx jest
+      
+      -name: Deploy
+        run: vercel
