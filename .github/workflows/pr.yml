@@ -3,7 +3,9 @@ name: Link tree push action
 on:
   push:
     branches: [master, main]
-
+defaults:
+  run:
+    working-directory: "./server"
 env:
   CI: true
   ATLAS_URI: mongodb+srv://dashmandalsaikhanbileg:amazon@testamazon.4lbhbua.mongodb.net/?retryWrites=true&w=majority
@@ -21,7 +23,7 @@ jobs:
           node-version: "14"
 
       - name: Node dependency install
-        run: cd server && yarn
+        run: yarn
 
       - name: Run test
-        run: cd server && npx jest
+        run: npx jest
