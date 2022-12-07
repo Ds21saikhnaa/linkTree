@@ -11,7 +11,8 @@ env:
   ATLAS_URI: mongodb+srv://dashmandalsaikhanbileg:amazon@testamazon.4lbhbua.mongodb.net/?retryWrites=true&w=majority
   JWT_SECRET: LINKTREE%21$
   JWT_EXPIRESIN: 30d
-  VERCEL_TOKEN: pESGlMFX2aHyl2B0OeJWO7qG
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
   build_and_test:
@@ -29,8 +30,13 @@ jobs:
       - name: Run test
         run: npx jest
       
-      # - name: Deploy
-      #   run: vercel
-      - name: "Deploy application"
-        run: vercel --token ${VERCEL_TOKEN} --prod && y
+      - uses: actions/checkout@v2
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
          
