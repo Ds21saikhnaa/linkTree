@@ -5,7 +5,7 @@ on:
     branches: [master, main]
 defaults:
   run:
-    working-directory: "./index"
+    working-directory: "./server"
 env:
   CI: true
   ATLAS_URI: ${{ secrets.ATLAS_URI }}
