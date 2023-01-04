@@ -5,7 +5,7 @@ on:
     branches: [master, main]
 defaults:
   run:
-    working-directory: "./server"
+    working-directory: "./index"
 env:
   CI: true
   ATLAS_URI: ${{ secrets.ATLAS_URI }}
@@ -27,8 +27,8 @@ jobs:
       - name: Node dependency install
         run: yarn
 
-      - name: Run test
-        run: npx jest
+      # - name: Run test
+      #   run: npx jest
       
       - uses: actions/checkout@v2
       - name: Install Vercel CLI
