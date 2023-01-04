@@ -21,16 +21,17 @@ afterAll(async () => {
 //   });
 // });
 
-// describe("GET /api/products", () => {
-//   it("should return all products", async () => {
-//     // const res = await request.get("/api/v1/links").set('Authorization', 'bearer ' + TOKEN);
-//     const res = await request.get("/api/v1/links").set('Authorization', `Bearer ${TOKEN}`)
-//     //console.log(res.text);
-//     expect(res.statusCode).toBe(200);
+describe("GET /api/v1/links", () => {
+  it("should return all products", async () => {
+    // const res = await request.get("/api/v1/links").set('Authorization', 'bearer ' + TOKEN);
+    // const res = await request.get("/api/v1/links").set('Authorization', `Bearer ${TOKEN}`)
+    const res = await request.get("/api/v1/links");
+    //console.log(res.text);
+    expect(res.statusCode).toBe(200);
 
-//     // expect(res.body.data.length).toBeGreaterThan(0);
-//   });
-// });
+    // expect(res.body.data.length).toBeGreaterThan(0);
+  });
+});
 
 // describe("POST /api/products", () => {
 //   it("should create a product", async () => {
