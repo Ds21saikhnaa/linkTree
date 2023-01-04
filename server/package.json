@@ -15,7 +15,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "dev": "nodemon  --experimental-modules --es-module-specifier-resolution=node  server",
+    "dev": "nodemon  --experimental-modules --es-module-specifier-resolution=node  index",
     "test": "cross-env NODE_ENV=test jest --testTimeout=5000"
   },
   "devDependencies": {

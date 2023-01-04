@@ -28,7 +28,6 @@ describe("GET /api/v1/links", () => {
     const res = await request.get("/api/v1/links");
     //console.log(res.text);
     expect(res.statusCode).toBe(200);
-
     // expect(res.body.data.length).toBeGreaterThan(0);
   });
 });
