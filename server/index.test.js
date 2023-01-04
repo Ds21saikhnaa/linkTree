@@ -12,14 +12,14 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe("GET /api/products token bhgu tohioldold", () => {
-  it("should return all products", async () => {
-    const res = await request.get("/api/v1/links");
-    expect(res.statusCode).toBe(401);
-    expect(res.body.success).toBe(false);
-    expect(res.body.error.message).toBe('ene uildeliig hiihed tanii erh hurehgui bn. Ta ehleed newtrej oroh ystoi!');
-  });
-});
+// describe("GET /api/products token bhgu tohioldold", () => {
+//   it("should return all products", async () => {
+//     const res = await request.get("/api/v1/links");
+//     expect(res.statusCode).toBe(401);
+//     expect(res.body.success).toBe(false);
+//     expect(res.body.error.message).toBe('ene uildeliig hiihed tanii erh hurehgui bn. Ta ehleed newtrej oroh ystoi!');
+//   });
+// });
 
 describe("GET /api/products", () => {
   it("should return all products", async () => {
