@@ -1,11 +1,3 @@
-// const app = require("./index");
-// const { connectDB } = require("./config/db");
-// const port = process.env.PORT || 5001;
-// connectDB();
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}.`)
-// });
-
 const express = require("express");
 const cors = require('cors');
 const dotenv = require("dotenv");
@@ -40,10 +32,3 @@ mongoose.connect(process.env.ATLAS_URI).then(() => {
   console.log({ err });
   process.exit(1);
 });
-// connectDB();
-
-// server.listen(port, () => {
-//   console.log(`Example app listening on port ${port}.`)
-// });
-
-// module.exports = app;
