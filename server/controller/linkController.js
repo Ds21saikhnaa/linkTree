@@ -34,6 +34,7 @@ const getUserLinks = asyncHandler(async (req, res, next) => {
     const data = await Link.find({ userName: req.params.name, isHide: false }).populate("userId").lean();
     res.status(200).json({
         success: true,
+	user: user,
         data
     });
 })
@@ -46,6 +47,7 @@ const getAdminLinks = asyncHandler(async (req, res, next) => {
     const data = await Link.find({ userName: req.userName }).populate("userId").lean();
     res.status(200).json({
         success: true,
+	user: user,
         data
     });
 })
