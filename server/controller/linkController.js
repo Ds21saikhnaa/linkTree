@@ -27,10 +27,11 @@ const createLink = asyncHandler(async (req, res, next) => {
 });
 
 const getUserLinks = asyncHandler(async (req, res, next) => {
-    const data = await Link.find({ userName: req.params.name, isHide: false }).populate("userId").lean();
-    if (!data) {
+    const user = await User.find({ name: req.params.name });
+    if (!user.length) {
         throw new MyError("iim user bhgui bn!", 404);
     }
+    const data = await Link.find({ userName: req.params.name, isHide: false }).populate("userId").lean();
     res.status(200).json({
         success: true,
         data
@@ -38,10 +39,11 @@ const getUserLinks = asyncHandler(async (req, res, next) => {
 })
 
 const getAdminLinks = asyncHandler(async (req, res, next) => {
-    const data = await Link.find({ userName: req.params.name }).populate("userId").lean();
-    if (!data) {
+    const user = await User.findById(req.userId);
+    if (!user) {
         throw new MyError("iim user bhgui bn!", 404);
     }
+    const data = await Link.find({ userName: req.userName }).populate("userId").lean();
     res.status(200).json({
         success: true,
         data

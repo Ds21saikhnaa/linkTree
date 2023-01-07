@@ -14,36 +14,45 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "email hayg buruu bn!"]
     },
-    password:{
-        type:String,
+    password: {
+        type: String,
         minlength: 4,
         required: [true, "nuuts ugee oruulna uu!"],
         select: false
     },
+    proFile: {
+        type: String,
+        default: "https://i.stack.imgur.com/34AD2.jpg"
+    },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
-    createdAt:{
+    createdAt: {
         type: Date,
         default: Date.now
     }
 
-},{timestamps: true});
+}, { timestamps: true });
 
-UserSchema.pre("save", async function(next) {
+UserSchema.pre("save", async function (next) {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
 });
 
-UserSchema.methods.getJsonWebToken = function(){
-    const token = jwt.sign({id: this._id, name: this.name}, process.env.JWT_SECRET, {
+UserSchema.methods.getJsonWebToken = function () {
+    const token = jwt.sign({ id: this._id, name: this.name }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRESIN
     });
     return token;
 };
 
-UserSchema.methods.checkPassword = async function(enteredPassword){
+UserSchema.methods.checkPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 }
+
+UserSchema.pre("remove", async function (next) {
+    await this.model("Link").deleteMany({ userId: this._id })
+    next();
+});
 
 const User = mongoose.model("User", UserSchema);
 module.exports = { User };

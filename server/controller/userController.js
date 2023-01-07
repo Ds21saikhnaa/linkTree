@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { User } = require("../models/userModel");
 const { MyError } = require("../utils/myError");
+const { authorize } = require("../middleware/protect");
 
 const register = asyncHandler(async (req, res, next) => {
     const user = await User.create(req.body);
@@ -34,4 +35,15 @@ const login = asyncHandler(async (req, res, next) => {
     });
 });
 
-module.exports = { login, register }
+const deleteAcc = asyncHandler(async (req, res, next) => {
+    const user = await User.findById(req.userId);
+    if (!user) {
+        throw new MyError("iim user bhgui bn!", 404);
+    }
+    user.remove();
+    res.status(200).json({
+        success: true
+    });
+})
+
+module.exports = { login, register, deleteAcc }

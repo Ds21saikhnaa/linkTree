@@ -5,7 +5,7 @@ const linkRouter = Router();
 linkRouter.route('/links').get(getLinks);
 linkRouter.route('/getLink/:name').get(getUserLinks);
 linkRouter.use(protect);
-linkRouter.route('/getAdmin/:name').get(getAdminLinks);
+linkRouter.route('/getAdmin').get(getAdminLinks);
 linkRouter.route('/createLink').post(createLink);
 linkRouter.route('/link/:id').delete(deleteLink).patch(updateLink);
 module.exports = { linkRouter }
