@@ -31,10 +31,10 @@ const getUserLinks = asyncHandler(async (req, res, next) => {
     if (!user.length) {
         throw new MyError("iim user bhgui bn!", 404);
     }
-    const data = await Link.find({ userName: req.params.name, isHide: false }).populate("userId").lean();
+    const data = await Link.find({ userName: req.params.name, isHide: false }).sort({ updatedAt: -1 }).populate("userId").lean();
     res.status(200).json({
         success: true,
-	user: user,
+        user: user,
         data
     });
 })
@@ -44,10 +44,10 @@ const getAdminLinks = asyncHandler(async (req, res, next) => {
     if (!user) {
         throw new MyError("iim user bhgui bn!", 404);
     }
-    const data = await Link.find({ userName: req.userName }).populate("userId").lean();
+    const data = await Link.find({ userName: req.userName }).sort({ updatedAt: -1 }).populate("userId").lean();
     res.status(200).json({
         success: true,
-	user: user,
+        user: user,
         data
     });
 })
