@@ -8,8 +8,8 @@ const register = asyncHandler(async (req, res, next) => {
     const token = user.getJsonWebToken();
     res.status(200).json({
         success: true,
-        data: user,
-        token
+	token: token,
+        data: user
     });
 });
 
